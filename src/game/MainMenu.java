@@ -43,7 +43,9 @@ public class MainMenu {
             final int offset = 100;
 
             menu1.setTranslateX(offset);
-
+           
+            // create buttonLoadGame 
+            
             MenuButton buttonLoadGame = new MenuButton("LOAD GAME");
             buttonLoadGame.setOnMouseClicked(event -> {
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), this);
@@ -53,6 +55,8 @@ public class MainMenu {
                 fadeTransition.play();
 
             });
+            
+            // create buttonOption
 
             MenuButton buttonOption = new MenuButton("OPTIONS");
             buttonOption.setOnMouseClicked(event -> {
@@ -71,6 +75,8 @@ public class MainMenu {
                     getChildren().remove(menu0);
                 });
             });
+            
+            // create buttonExit
 
             MenuButton buttonExit = new MenuButton("EXIT");
             buttonExit.setOnMouseClicked(event -> {
@@ -95,6 +101,8 @@ public class MainMenu {
                 });
 
             });
+            
+            // create buttonSound , buttonVideo
 
             MenuButton buttonSound = new MenuButton("SOUND");
             MenuButton buttonVideo = new MenuButton("VIDEO");
