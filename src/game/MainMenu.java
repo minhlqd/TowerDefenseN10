@@ -48,11 +48,13 @@ public class MainMenu {
             
             MenuButton buttonLoadGame = new MenuButton("LOAD GAME");
             buttonLoadGame.setOnMouseClicked(event -> {
-                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), this);
-                fadeTransition.setFromValue(1);
-                fadeTransition.setToValue(0);
-                fadeTransition.setOnFinished(evt -> setVisible(false));
-                fadeTransition.play();
+                 GameField gameField = new GameField();
+                try {
+                    gameField.renderGameField();
+                    getChildren().addAll(gameField.tileMap.mapPane,gameField.towers.towerPane);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
 
             });
             
