@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class Bullet implements gameEntity{
+public class Bullet{
     private double DMG;
     private double posX, posY;
     private double width, height;
