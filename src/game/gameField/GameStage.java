@@ -21,24 +21,15 @@ public class GameStage {
             monsters.add(m);
         }
     }
-    ArrayList<Monster> getMonsters() {
-        return monsters;
-    }
-    ArrayList<Tower> getTowers() {
-        return towers;
+     public ArrayList<Tower> getPlayerTowers(){
+        return playerTowers;
     }
 
-    public void createTower(){
-
+    public ArrayList<Enemy> getEnemyAlive() {
+        return EnemyAlive;
     }
-    public void deleteTower(){
-
-    }
-    public void addMonster(){
-
-    }
-    public void destroyMonster(){
-
-    }
+    public void addTower(Tower tower){playerTowers.add(tower);}
+    public void removeMonster(Enemy enemy){EnemyAlive.remove(enemy);}
+    public void removeTower(Tower tower){playerTowers.remove(tower);}
 
 }
