@@ -2,6 +2,7 @@ package game.characters.entity.Bullet;
 
 import game.characters.GameState;
 import game.characters.entity.Monster.Monster;
+import game.characters.entity.Tower.TowerMachineGun;
 import game.characters.entity.Tower.TowerNormal;
 import game.characters.entity.Tower.TowerSniper;
 
@@ -16,12 +17,14 @@ public class TowerAtk {
     private ScheduledFuture<?> pollHandler;
     private TowerSniper towerSniper;
     private TowerNormal towerNormal;
+    private TowerMachineGun towerMachineGun;
     private Monster target;
 
     public TowerAtk(TowerSniper towerSniper){
         this.towerSniper = towerSniper;
     }
     public TowerAtk(TowerNormal towerNormal) {this.towerNormal = towerNormal;}
+    public TowerAtk(TowerMachineGun towerMachineGun){this.towerMachineGun = towerMachineGun;}
 
     public void pollTowerSniper(int delay){
         final Runnable task = new Runnable() {
@@ -43,6 +46,28 @@ public class TowerAtk {
             }
         };
         pollHandler = scheduledExecutorService.scheduleWithFixedDelay(task , delay , 1000 , TimeUnit.MILLISECONDS);
+    }
+
+    public void pollTowerMachine(int delay){
+        final Runnable taskMachine = new Runnable() {
+            @Override
+            public void run() {
+                int towerMinXRange = towerMachineGun.getX() - towerMachineGun.getAttackRange();
+                int towerMaxXRange = towerMachineGun.getX() + towerMachineGun.getAttackRange();
+                int towerMinYRange = towerMachineGun.getY() - towerMachineGun.getAttackRange();
+                int towerMaxYRange = towerMachineGun.getY() + towerMachineGun.getAttackRange();
+                Iterator<Monster> iterator = GameState.getGame().getMonstersAlive().iterator();
+                while (iterator.hasNext()) {
+                    target = iterator.next();
+                    if (target.getX() > towerMinXRange & target.getX() < towerMaxXRange & target.getY() > towerMinYRange & target.getY() < towerMaxYRange) {
+                        towerMachineGun.createBullet(target);
+                        target.takeDamage(towerMachineGun.getAttackDamage());
+                        break;
+                    }
+                }
+            }
+        };
+        pollHandler = scheduledExecutorService.scheduleWithFixedDelay(taskMachine , delay , 1000 , TimeUnit.MILLISECONDS);
     }
 
     public void pollTowerNormal(int delay){
