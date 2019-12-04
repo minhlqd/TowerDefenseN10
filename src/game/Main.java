@@ -31,7 +31,7 @@ public class Main extends Application {
         MainController mainController = loader.getController();
 
         Menu.setMainController(mainController);
-        Menu.loadVista(Menu.MAIN_MENU);
+        Menu.loadMainController(Menu.MAIN_MENU);
 
         return mainPane;
     }
