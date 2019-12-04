@@ -12,7 +12,7 @@ import java.net.URL;
 public class Menu {
 
 
-    public static final String MAIN    = "characters/res/menu/holder.fxml";
+    public static final String MAIN    = "characters/res/menu/MAIN_CONTROLLER.fxml";
     public static final String MAIN_MENU = "characters/res/menu/MAIN_MENU.fxml";
     public static final URL GAME_UI = GameField.class.getResource("res/menu/GAME_UI.fxml");
 
