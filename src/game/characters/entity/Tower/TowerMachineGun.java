@@ -4,8 +4,11 @@ import game.characters.Coordinate;
 import game.characters.entity.Bullet.Bullet;
 import game.characters.entity.Bullet.TowerAtk;
 import game.characters.entity.Monster.Monster;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TowerMachineGun extends Tower {
@@ -14,9 +17,6 @@ public class TowerMachineGun extends Tower {
     private int attackDamageMachine;
     private double attackSpeedMachine;
     private int attackRangeMachine;
-    private int upgradeTime;
-    private int upgradeCost;
-    private int sellCostMachine;
     private ArrayList<Bullet> bulletListMachine;
     private Coordinate coordinate;
     private TowerAtk towerAttackerMachine;
@@ -25,27 +25,17 @@ public class TowerMachineGun extends Tower {
         super(x,y);
         bulletListMachine = new ArrayList<Bullet>();
         coordinate = new Coordinate(x , y);
-        attackDamageMachine = 1;
-        attackSpeedMachine = 20;
-        attackRangeMachine = 200;
+        attackDamageMachine = 4;
+        attackSpeedMachine = 800;
+        attackRangeMachine = 250;
         towerAttackerMachine = new TowerAtk(this);
         towerAttackerMachine.pollTowerMachine(BUILD_TIME);
-        sellCostMachine = 35;
-        upgradeCost = 20;
-        upgradeTime = 5000;
-    }
-
-
-    public void upgradeTower(){
-        attackDamageMachine += 1;
-        attackSpeedMachine = attackSpeedMachine + 0.1;
-        attackRangeMachine = attackRangeMachine + 50;
-        upgradeTime += 3000;
-        upgradeCost += 20;
     }
 
 
     public void createBullet(Monster target){
+        bulletShotSound = new MediaPlayer(new Media(new File("src/game/characters/res/sound/Shot.wav").toURI().toString()));
+        bulletShotSound.play();
         bulletListMachine.add(new Bullet(target , coordinate.getExactX() , coordinate.getExactY() , Color.GREEN));
     }
 
@@ -67,20 +57,7 @@ public class TowerMachineGun extends Tower {
     }
 
     public double getAttackSpeed(){
-        return attackSpeedMachine
-                ;
-    }
-
-    public int getUpgradeCost(){
-        return upgradeCost;
-    }
-
-    public int getSellCost(){
-        return sellCostMachine;
-    }
-
-    public int getUpgradeTime(){
-        return upgradeTime;
+        return attackSpeedMachine;
     }
 
     public TowerAtk getTowerAttacker() {

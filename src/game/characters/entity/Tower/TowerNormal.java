@@ -4,8 +4,11 @@ import game.characters.Coordinate;
 import game.characters.entity.Bullet.Bullet;
 import game.characters.entity.Bullet.TowerAtk;
 import game.characters.entity.Monster.Monster;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TowerNormal extends Tower {
@@ -25,28 +28,18 @@ public class TowerNormal extends Tower {
         super(x,y);
         bulletListNormal = new ArrayList<Bullet>();
         coordinate = new Coordinate(x , y);
-        attackDamageNormal = 1;
-        attackSpeedNormal = 20;
-        attackRangeNormal = 200;
+        attackDamageNormal = 3;
+        attackSpeedNormal = 500;
+        attackRangeNormal = 250;
         towerAttackerNormal = new TowerAtk(this);
         towerAttackerNormal.pollTowerNormal(BUILD_TIME);
-        sellCostNormal = 35;
-        upgradeCost = 20;
-        upgradeTime = 5000;
-    }
-
-
-    public void upgradeTower(){
-        attackDamageNormal += 1;
-        attackSpeedNormal = attackSpeedNormal + 0.1;
-        attackRangeNormal = attackRangeNormal + 50;
-        upgradeTime += 3000;
-        upgradeCost += 20;
     }
 
 
     public void createBullet(Monster target){
-        bulletListNormal.add(new Bullet(target , coordinate.getExactX() , coordinate.getExactY() , Color.GREEN));
+        bulletShotSound = new MediaPlayer(new Media(new File("src/game/characters/res/sound/normalcannon.wav").toURI().toString()));
+        bulletShotSound.play();
+        bulletListNormal.add(new Bullet(target , coordinate.getExactX() , coordinate.getExactY() , Color.rgb(209, 125, 42)));
     }
 
 
@@ -67,21 +60,10 @@ public class TowerNormal extends Tower {
     }
 
     public double getAttackSpeed(){
-        return attackSpeedNormal
-                ;
+        return attackSpeedNormal;
     }
 
-    public int getUpgradeCost(){
-        return upgradeCost;
-    }
 
-    public int getSellCost(){
-        return sellCostNormal;
-    }
-
-    public int getUpgradeTime(){
-        return upgradeTime;
-    }
 
     public TowerAtk getTowerAttacker() {
         return towerAttackerNormal;

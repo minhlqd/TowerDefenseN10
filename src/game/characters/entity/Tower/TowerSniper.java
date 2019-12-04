@@ -18,6 +18,9 @@ public class TowerSniper extends Tower{
     private int attackDamageSniper;
     private double attackSpeedSniper;
     private int attackRangeSniper;
+    private int upgradeTime;
+    private int upgradeCost;
+    private int sellCostSniper;
     private ArrayList<Bullet> bulletListSniper;
     private Coordinate coordinate;
     private TowerAtk towerAttackerSniper;
@@ -26,8 +29,8 @@ public class TowerSniper extends Tower{
         super(x,y);
         bulletListSniper = new ArrayList<Bullet>();
         coordinate = new Coordinate(x , y);
-        attackDamageSniper = 2;
-        attackSpeedSniper = 450;
+        attackDamageSniper = 5;
+        attackSpeedSniper = 350;
         attackRangeSniper = 350;
         towerAttackerSniper = new TowerAtk(this);
         towerAttackerSniper.pollTowerSniper(BUILD_TIME);
@@ -58,9 +61,22 @@ public class TowerSniper extends Tower{
     }
 
     public double getAttackSpeed(){
-        return attackSpeedSniper;
+        return attackSpeedSniper
+        ;
     }
-    
+
+    public int getUpgradeCost(){
+        return upgradeCost;
+    }
+
+    public int getSellCost(){
+        return sellCostSniper;
+    }
+
+    public int getUpgradeTime(){
+        return upgradeTime;
+    }
+
     public TowerAtk getTowerAttacker() {
         return towerAttackerSniper;
     }
