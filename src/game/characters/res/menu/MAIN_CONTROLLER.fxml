@@ -3,6 +3,6 @@
 
 <VBox prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" fx:controller="game.MainController">
     <children>
-        <StackPane fx:id="vistaHolder" VBox.vgrow="ALWAYS" />
+        <StackPane fx:id="mainController" VBox.vgrow="ALWAYS" />
     </children>
 </VBox>
