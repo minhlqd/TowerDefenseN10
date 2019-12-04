@@ -30,9 +30,9 @@ public class Menu {
         Menu.mainController = mainController;
     }
 
-    public static void loadVista(String fxml) {
+    public static void loadMainController(String fxml) {
         try {
-            mainController.setVista((Node)(FXMLLoader.load((Menu.class.getResource(fxml)))));
+            mainController.setMainController((Node)(FXMLLoader.load((Menu.class.getResource(fxml)))));
         } catch (IOException e) {
             e.printStackTrace();
         }
