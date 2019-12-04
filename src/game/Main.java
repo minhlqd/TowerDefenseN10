@@ -1,35 +1,51 @@
 package game;
 
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
-import java.io.FileInputStream;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 
 public class Main extends Application {
 
+    public final static int HEIGHT = 800;
+    public final static int WIDTH = 1280;
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws Exception{
+        stage.setTitle("Tower Defense");
+        stage.setScene(createScene(loadMainPane()));
+        stage.setWidth(WIDTH);
+        stage.setHeight(HEIGHT);
+        stage.setResizable(false);
+        stage.show();
+        Menu.setStage(stage);
+    }
 
-        Common common = new Common();
-        MainMenu.GameMenu gameMenu = new MainMenu.GameMenu();
-        MainMenu.LoadBackground background = new MainMenu.LoadBackground(common.screenWidth, common.screenHeight);
+    private Pane loadMainPane() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
 
-        Group root = new Group();
-        root.getChildren().addAll(background.pane, gameMenu );
+        Pane mainPane = (Pane) loader.load(getClass().getResourceAsStream(Menu.MAIN));
 
-        Scene scene = new Scene(root);
+        MainController mainController = loader.getController();
 
-        primaryStage.setTitle("Tower Defense");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        Menu.setMainController(mainController);
+        Menu.loadVista(Menu.MAIN_MENU);
+
+        return mainPane;
+    }
+
+    private Scene createScene(Pane mainPane) {
+        Scene scene = new Scene(mainPane);
+
+        scene.getStylesheets().setAll(getClass().getResource("characters/res/menu/MENU_STYLE.css").toExternalForm());
+
+        return scene;
     }
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }
