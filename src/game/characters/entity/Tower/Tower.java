@@ -17,9 +17,6 @@ public abstract class Tower {
         this.y=y;
     }
 
-    public abstract void upgradeTower();
-
-
     public abstract TowerAtk getTowerAttacker();
 
     public abstract ArrayList<Bullet> getBulletList();
