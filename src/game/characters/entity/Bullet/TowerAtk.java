@@ -91,7 +91,5 @@ public class TowerAtk {
         };
         pollHandler = scheduledExecutorService.scheduleWithFixedDelay(taskNormal , delay , 1000 , TimeUnit.MILLISECONDS);
     }
-    public void cancel(){
-        pollHandler.cancel(true);
-    }
+  
 }
