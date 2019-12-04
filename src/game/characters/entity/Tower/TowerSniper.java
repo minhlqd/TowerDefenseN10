@@ -5,8 +5,11 @@ import game.characters.Coordinate;
 import game.characters.entity.Bullet.Bullet;
 import game.characters.entity.Bullet.TowerAtk;
 import game.characters.entity.Monster.Monster;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -15,41 +18,26 @@ public class TowerSniper extends Tower{
     private int attackDamageSniper;
     private double attackSpeedSniper;
     private int attackRangeSniper;
-    private int upgradeTime;
-    private int upgradeCost;
-    private int sellCostSniper;
     private ArrayList<Bullet> bulletListSniper;
     private Coordinate coordinate;
     private TowerAtk towerAttackerSniper;
-
-
 
     public TowerSniper(int x , int y){
         super(x,y);
         bulletListSniper = new ArrayList<Bullet>();
         coordinate = new Coordinate(x , y);
-        attackDamageSniper = 3;
-        attackSpeedSniper = 10;
-        attackRangeSniper = 300;
+        attackDamageSniper = 2;
+        attackSpeedSniper = 450;
+        attackRangeSniper = 350;
         towerAttackerSniper = new TowerAtk(this);
         towerAttackerSniper.pollTowerSniper(BUILD_TIME);
-        sellCostSniper = 35;
-        upgradeCost = 20;
-        upgradeTime = 5000;
+
     }
-
-
-    public void upgradeTower(){
-        attackDamageSniper += 1;
-        attackSpeedSniper = attackSpeedSniper + 0.1;
-        attackRangeSniper = attackRangeSniper + 50;
-        upgradeTime += 3000;
-        upgradeCost += 20;
-    }
-
 
     public void createBulletSniper(Monster target){
-        bulletListSniper.add(new Bullet(target , coordinate.getExactX() , coordinate.getExactY() , Color.BLACK));
+        bulletShotSound = new MediaPlayer(new Media(new File("src/game/characters/res/sound/cannon3.mp3").toURI().toString()));
+        bulletShotSound.play();
+        bulletListSniper.add(new Bullet(target , coordinate.getExactX() , coordinate.getExactY() , Color.rgb(214, 200, 39)));
     }
 
 
@@ -70,22 +58,9 @@ public class TowerSniper extends Tower{
     }
 
     public double getAttackSpeed(){
-        return attackSpeedSniper
-        ;
+        return attackSpeedSniper;
     }
-
-    public int getUpgradeCost(){
-        return upgradeCost;
-    }
-
-    public int getSellCost(){
-        return sellCostSniper;
-    }
-
-    public int getUpgradeTime(){
-        return upgradeTime;
-    }
-
+    
     public TowerAtk getTowerAttacker() {
         return towerAttackerSniper;
     }
