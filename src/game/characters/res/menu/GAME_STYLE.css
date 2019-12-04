@@ -1,0 +1,30 @@
+.root {
+}
+
+#buyTowerButtonNormal {
+    -fx-background-image: url('icon/BUY_ICON_1.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#buyTowerButtonSniper {
+    -fx-background-image: url('icon/BUY_ICON_2.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#buyTowerButtonMachine {
+    -fx-background-image: url('icon/BUY_ICON_3.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#exit{
+    -fx-background-image: url('icon/MENU_ICON.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#timeLabel{
+    -fx-font-size: 20;
+}
