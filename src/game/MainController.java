@@ -9,7 +9,7 @@ public class MainController {
     @FXML
     private StackPane mainController;
 
-    public void setVista(Node node) {
+    public void setMainController(Node node) {
         mainController.getChildren().setAll(node);
     }
 
