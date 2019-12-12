@@ -18,7 +18,6 @@ public class TileMap extends ImageView{
     public int[][] map;
     private final int RESOLUTION_WIDTH;
     private final int RESOLUTION_HEIGHT;
-    private final int TILE_LENGTH_X;
     private final int TILE_LENGTH_Y;
     private final int OFFSET_Y;
     private final boolean OFFSET_Y_FLAG;
